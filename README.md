@@ -14,7 +14,9 @@ Módulo Terraform reutilizável para criar tabelas DynamoDB na AWS, otimizado pa
 | Nome | Versão |
 |------|--------|
 | terraform | >= 1.0.0 |
-| aws | ~> 5.0 |
+| aws | ~> 6.0 |
+| go | >= 1.21 (para testes) |
+| make | qualquer (opcional) |
 
 ## Uso
 
@@ -86,6 +88,7 @@ module "dynamodb" {
 
 ```
 terraform-dynamodb/
+├── Makefile                # Automação cross-platform
 ├── backend.tf              # Configuração do Terraform e providers
 ├── provider.tf             # Configuração do provider AWS
 ├── variables.tf            # Variáveis do módulo raiz
@@ -149,23 +152,63 @@ terraform {
 }
 ```
 
-## Comandos Úteis
+## Makefile (Cross-Platform)
+
+O projeto inclui um Makefile compatível com **Windows**, **Linux** e **macOS**.
+
+### Instalação de Ferramentas
 
 ```bash
-# Inicializar
-terraform init
+# Ver instruções de instalação para seu SO
+make install-tools
 
-# Validar configuração
-terraform validate
+# Verificar se as ferramentas estão instaladas
+make check-tools
+```
 
-# Planejar mudanças
-terraform plan
+### Comandos Disponíveis
 
-# Aplicar mudanças
-terraform apply
+```bash
+make help              # Mostra todos os comandos
 
-# Destruir recursos
-terraform destroy
+# Terraform
+make init              # Inicializa o Terraform
+make validate          # Valida a configuração
+make fmt               # Formata os arquivos .tf
+make plan              # Gera plano de execução
+make apply             # Aplica as mudanças
+make destroy           # Destrói os recursos
+
+# Testes
+make test              # Executa testes completos
+make test-short        # Testes rápidos (sem AWS)
+
+# Limpeza
+make clean             # Limpa arquivos temporários
+make clean-all         # Limpa tudo
+
+# CI/CD
+make ci                # Pipeline completo
+make lint              # Formatação + validação
+```
+
+### Windows
+
+No Windows, você pode usar o Makefile com:
+- **Chocolatey**: `choco install make`
+- **WSL**: Windows Subsystem for Linux
+- **Git Bash**: Inclui make
+
+## Comandos Terraform (Alternativa)
+
+Se preferir não usar Make:
+
+```bash
+terraform init         # Inicializar
+terraform validate     # Validar
+terraform plan         # Planejar
+terraform apply        # Aplicar
+terraform destroy      # Destruir
 ```
 
 ## Validações
