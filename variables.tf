@@ -4,3 +4,8 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
+variable "terraform_workspace" {
+  description = "The Terraform workspace name"
+  type        = string
+  default     = "dev"
+}
