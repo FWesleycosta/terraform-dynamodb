@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: terraform-dynamodb
+  title: Terraform DynamoDB
+  description: "Módulo Terraform para tabelas DynamoDB na AWS, pronto para uso como trava de state do Terraform."
+  tags:
+    - terraform
+    - aws
+    - dynamodb
+  annotations:
+    github.com/project-slug: FWesleycosta/terraform-dynamodb
+spec:
+  type: library
+  lifecycle: experimental
+  owner: fwesleycosta
+  system: iac
